@@ -1,0 +1,3646 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="mailVU API Documentation : " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>mailVU API Documentation</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/afitzpatrick1/mailvu.github.com">View on GitHub</a>
+
+          <h1 id="project_title">mailVU API Documentation</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/afitzpatrick1/mailvu.github.com/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/afitzpatrick1/mailvu.github.com/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>1.  Introduction</h1>
+
+<h2>1.1.  Prerequisites</h2>
+
+<p>When requesting the API key, please provide us the following</p>
+
+<ol>
+<li>Domain name where the widget will be hosted/called from.</li>
+<li>Text for the title bar and the button of the widget.</li>
+<li>Number of minutes of recording you would like up to 10 minutes.</li>
+<li>Callback URL. If you want to get notification of each recording, you will have to provide us with a callback URL</li>
+</ol><h1>2.  User Management</h1>
+
+<h2>2.1.  User Management API Endpoints</h2>
+
+<p>
+<br></p>
+
+<table width="626" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="138" height="4" bgcolor="#d9eaca">
+                <h2 align="CENTER">Environment</h2>
+            </td>
+            <td width="458" bgcolor="#d9eaca">
+                <h2 align="CENTER">URL</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="138" height="5" bgcolor="#ffffff">
+                <p>
+                Test</p>
+            </td>
+            <td width="458" bgcolor="#ffffff">
+                <p>
+                <a href="http://mailvu.com/api/record.do">http://apitest.mailvu.com/api/v1/manage</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="138" height="4" bgcolor="#ffffff">
+                <p>
+                Production</p>
+            </td>
+            <td width="458" bgcolor="#ffffff">
+                <p>
+                <a href="http://mailvu.com/api/record.do">http://api.mailvu.com/api/v1/manage</a></p>
+            </td>
+        </tr>
+</table><h2>2.2.  Add User</h2>
+
+<p>To Add/Remove Users you should call the above URL using HTTP protocol and pass the following parameters as POST or GET variables</p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="44" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ADD_USER:
+                to add a user to the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                A
+                unique ID (Unique for your account) that identifies a user</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="135" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+user-id+timestamp+partner-secret-key))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                name</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Name
+                of the user</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                email</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Email
+                address of the user</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="61" bgcolor="#ffffff">
+                <p align="LEFT">
+                plan</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Plan
+                used by the user. This will be required if your users get
+                different limits per your contract with mailvu.</p>
+                <p>
+                Please
+                contact <a href="mailto:support@mailvu.com">support@mailvu.com</a>
+                to agree on the possible values for this field.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="135" bgcolor="#ffffff">
+                <p align="LEFT">
+                security-level</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                If
+                your plan requires dashboard access instead of just widget, add
+                this parameter to indicate proper security level</p>
+                <p>
+                Leave
+                it empty for for Widgets only</p>
+                <p>
+                Possible
+                Values:-</p>
+                <p>
+                BASE_USER</p>
+                <p>
+                USER</p>
+                <p>
+                ADMINISTRATOR</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                signature</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Signature
+                text in HTML that will appear in the footer of the email and the
+                landing page.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon1_image_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon1_item_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon2_image_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon2_item_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon3_image_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon3_item_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon4_image_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon4_item_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon5_image_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon5_item_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon6_image_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon6_item_url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="6" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-code</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                specific
+                to your account. Default mailvu-business</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="25" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-logo-url</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for the user’s logo.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color1</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color2</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color3</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color4</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color5</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="4" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color6</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+</table><h2>Example</h2>
+
+<p>
+<a href="http://apitest.mailvu.com/api/v1/manage?api-key=test-api&amp;action=ADD_USER&amp;&amp;timestamp=1308000648&amp;user-id=testuser123&amp;hash=e822736279ef28072d4ecf85a88921cc">http://apitest.mailvu.com/api/v1/manage?api-key=test-api&amp;action=ADD_USER&amp;&amp;timestamp=1308000648&amp;user-id=testuser123&amp;hash=e822736279ef28072d4ecf85a88921cc</a></p>
+<p>
+<br></p>
+
+<h2>Return Values</h2>
+
+<p>
+<br></p>
+
+<table width="626" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ff9966">
+                <h2 align="CENTER">Value</h2>
+            </td>
+            <td width="404" bgcolor="#ff9966">
+                <p align="CENTER">
+                <b>Description</b></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                ok</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Action
+                successful. User was added to the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                Error
+                301</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                certain required parameters are missing</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="23" bgcolor="#ffffff">
+                <p>
+                Error
+                304</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                the hash generated by mailvu does not match the hash passed in
+                the parameter.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ffffff">
+                <p>
+                Error
+                321</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                User
+                ID already exists in the system</p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h2>2.3 Change User</h2>
+
+<p>To change certain parameters of the user (plan/security etc.) you can
+call the endpoints with the following parameters:</p>
+
+<p>
+<br></p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="46" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                CHANGE_USER:
+                to add a user to the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                A
+                unique ID (Unique for your account) that identifies a user</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="135" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+user-id+timestamp+partner-secret-key))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                name</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Name
+                of the user</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                email</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Email
+                address of the user</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="61" bgcolor="#ffffff">
+                <p align="LEFT">
+                plan</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Plan
+                used by the user. This will be required if your users get
+                different limits per your contract with mailvu.</p>
+                <p>
+                Please
+                contact <a href="mailto:support@mailvu.com">support@mailvu.com</a>
+                to agree on the possible values for this field.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="135" bgcolor="#ffffff">
+                <p align="LEFT">
+                security-level</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                If
+                your plan requires dashboard access instead of just widget, add
+                this parameter to indicate proper security level</p>
+                <p>
+                Leave
+                it empty for for Widgets only</p>
+                <p>
+                Possible
+                Values:-</p>
+                <p>
+                BASE_USER</p>
+                <p>
+                USER</p>
+                <p>
+                ADMINISTRATOR</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                signature</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Signature
+                text in HTML that will appear in the footer of the email and the
+                landing page.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon1_image_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon1_item_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon2_image_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon2_item_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon3_image_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon3_item_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon4_image_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon4_item_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon5_image_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon5_item_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon6_image_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for social media icon. See appendix B for defaults</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                icon6_item_url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for users social media account</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="6" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-code</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                specific
+                to your account. Default mailvu-business</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="25" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-logo-url</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                for the user’s logo.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color1</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color2</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color3</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color4</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color5</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="133" height="4" bgcolor="#ffffff">
+                <p align="LEFT">
+                template-color6</p>
+            </td>
+            <td width="46" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                defined field. Used to define color in the template</p>
+            </td>
+        </tr>
+</table><h2>Example</h2>
+
+<p>
+ 
+</p>
+
+<p>
+<a href="http://apitest.mailvu.com/api/v1/manage?api-key=test-api&amp;action=ADD_USER&amp;&amp;timestamp=1308000648&amp;user-id=testuser123&amp;hash=e822736279ef28072d4ecf85a88921cc">http://apitest.mailvu.com/api/v1/manage?api-key=test-api&amp;action=CHANGE_USER&amp;&amp;timestamp=1308000648&amp;user-id=testuser123&amp;hash=e822736279ef28072d4ecf85a88921cc</a></p>
+<p>
+<br></p>
+
+<h2>Return Values</h2>
+
+<p>
+<br></p>
+
+<table width="626" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ff9966">
+                <h2 align="CENTER">Value</h2>
+            </td>
+            <td width="404" bgcolor="#ff9966">
+                <p align="CENTER">
+                <b>Description</b></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                ok</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Action
+                successful. User was added to the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                Error
+                301</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                certain required parameters are missing</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="23" bgcolor="#ffffff">
+                <p>
+                Error
+                304</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                the hash generated by mailvu does not match the hash passed in
+                the parameter.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ffffff">
+                <p>
+                Error
+                324</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                User
+                does not exist in the system.</p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h2>2.4 Delete User</h2>
+
+<p>When a user is deleted, all the videos stored in the system are also
+deleted. Videos recorded earlier for this user will not play anymore</p>
+
+<p>
+<br></p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="90" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                DELETE_USER:
+                to delete a user from the system.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                MAILVU
+                User Id that was passed back while adding user</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="134" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+user-id+timestamp+partner-secret-key))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h2>Return Values</h2>
+
+<p>
+<br></p>
+
+<table width="626" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ff9966">
+                <h2 align="CENTER">Value</h2>
+            </td>
+            <td width="404" bgcolor="#ff9966">
+                <p align="CENTER">
+                <b>Description</b></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                ok</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Action
+                successful. User was added to the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                Error
+                301</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                certain required parameters are missing</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="23" bgcolor="#ffffff">
+                <p>
+                Error
+                304</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                the hash generated by mailvu does not match the hash passed in
+                the parameter.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                Error
+                322</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                User
+                does not exist in the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ffffff">
+                <p>
+                Error
+                323</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                User
+                is already deleted</p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h1>3. Message</h1>
+
+<p></p>
+
+<p>
+<br></p>
+
+<h2>3.1 Workflow</h2>
+
+<p><br><img src="http://mailvu-static.s3.amazonaws.com/api/api_workflow.png" alt="API Workflow"><br></p>
+
+<p>
+<br></p>
+
+<p lang="">
+<img src="mailvu_api_1_40_word%20no%20rev_html_59d050b1.png" name="graphics2" align="BOTTOM" width="624" height="469" border="0"></p>
+<p>
+<br></p>
+
+<h2>3.2 Message API Endpoints</h2>
+
+<p>
+<br></p>
+
+<table width="626" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="138" height="4" bgcolor="#d9eaca">
+                <h2 align="CENTER">Environment</h2>
+            </td>
+            <td width="458" bgcolor="#d9eaca">
+                <h2 align="CENTER">URL</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="138" height="5" bgcolor="#ffffff">
+                <p>
+                Test</p>
+            </td>
+            <td width="458" bgcolor="#ffffff">
+                <p>
+                <a href="http://mailvu.com/api/record.do">http://apitest.mailvu.com/api/v1/message</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="138" height="4" bgcolor="#ffffff">
+                <p>
+                Production</p>
+            </td>
+            <td width="458" bgcolor="#ffffff">
+                <p>
+                <a href="http://mailvu.com/api/record.do">http://api.mailvu.com/api/v1/message</a></p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<p>
+<br></p>
+
+<h2>3.3 Record Message</h2>
+
+<p>This action will allow users to record a message and when the message is
+done recording, they click on the “Save Video” and they
+will be redirected to the page passed in the redirect URL parameter.
+When the video is done encoding, you get a callback on your callback
+server with the details of the video.</p>
+
+<p>
+<br></p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="90" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                RECORD_MSG</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="79" bgcolor="#ffffff">
+                <p align="LEFT">
+                request-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                REQUEST-ID
+                that is unique for each request.</p>
+                <p>
+                This
+                could be alpha numeric upto 40 chars length. This value will be
+                returned in the callback.</p>
+                <p>
+                If
+                the same request id is sent again, the message will be rejected.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                id of the subscriber requesting this recording</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="135" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+timestamp+user-id+partner-secret-key+request-id))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="60" bgcolor="#ffffff">
+                <p align="LEFT">
+                redirect-url</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                After
+                the recording is complete When the user clicks on the “Save
+                Video” button, the app will redirect to this page. This
+                could be a dynamic URL specific to this user.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+</table><p>
+ 
+</p>
+
+<h2>3.4 Record and Send Message</h2>
+
+<p>This action allows you to record a message and email it out to email
+addresses passed as parameters.</p>
+
+<p>
+<br></p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="90" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                RECORD_MSG</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="79" bgcolor="#ffffff">
+                <p align="LEFT">
+                request-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                REQUEST-ID
+                that is unique for each request.</p>
+                <p>
+                This
+                could be alpha numeric upto 20 chars length. This value will be
+                returned in the callback.</p>
+                <p>
+                If
+                the same request id is sent again, the message will be rejected.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                id of the subscriber requesting this recording</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="135" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+timestamp+user-id+partner-secret-key+request-id))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="61" bgcolor="#ffffff">
+                <p align="LEFT">
+                redirect-url</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                After
+                the recording is complete and a message is displayed, the app
+                will redirect to this page. This could be a dynamic URL specific
+                to this user.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                from-email</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                From
+                Email address of the sender</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                from-name</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Name
+                of the sender</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                to-email</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                email
+                address of the recipient 
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                cc-email</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                email
+                address to be cc’ed</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                email-subject</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Subject
+                of the message</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#ffffff">
+                <p align="LEFT">
+                email-body</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Body
+                of the message</p>
+            </td>
+        </tr>
+</table><p>
+ 
+</p>
+
+<h2>3.5 Send Message</h2>
+
+<p>This action allows you to (re) send an already recorded message to some
+email address passed as parameters</p>
+
+<p>
+ 
+</p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="90" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                SEND_MSG</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="79" bgcolor="#ffffff">
+                <p align="LEFT">
+                request-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                REQUEST-ID
+                that is unique for each request.</p>
+                <p>
+                This
+                could be alpha numeric upto 20 chars length. This value will be
+                returned in the callback.</p>
+                <p>
+                If
+                the same request id is sent again, the message will be rejected.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                id of the subscriber requesting this recording</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                msg-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                This
+                is the message ID that was passed as parameter when the video was
+                recorded</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="135" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+timestamp+user-id+partner-secret-key+request-id+<b>msg-id</b>))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="61" bgcolor="#ffffff">
+                <p align="LEFT">
+                redirect-url</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                After
+                the recording is complete and a message is displayed, the app
+                will redirect to this page. This could be a dynamic URL specific
+                to this user.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                from-email</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                From
+                Email address of the sender</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                from-name</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Name
+                of the sender</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                to-email</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                email
+                address of the recipient 
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                cc-email</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                email
+                address to be cc’ed</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                email-subject</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Subject
+                of the message</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#ffffff">
+                <p align="LEFT">
+                email-body</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Body
+                of the message</p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h2>3.6 Get Message History</h2>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="90" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p align="LEFT">
+                GET_MSG_HISTORY</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                request-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                REQUEST-ID
+                that is unique for each request.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                id of the subscriber requesting this recording</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                msg-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                This
+                is the message ID that was passed as parameter when the video was
+                recorded</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="134" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+timestamp+user-id+partner-secret-key+request-id+<b>msg-id</b>))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h2>3.7 Download File</h2>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="90" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="45" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p align="LEFT">
+                DOWNLOAD_ORIG
+                (For original uploaded video)</p>
+                <p align="LEFT">
+                DOWNLOAD_FLV
+                (For flash version)</p>
+                <p align="LEFT">
+                DOWNLOAD_MP4
+                (For mp4 version)</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                request-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                REQUEST-ID
+                that is unique for each request.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user
+                id of the subscriber requesting this recording</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                msg-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                This
+                is the message ID that was passed as parameter when the video was
+                recorded</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="134" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+timestamp+user-id+partner-secret-key+request-id+<b>msg-id</b>))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h2>3.8 Callback</h2>
+
+<p>When mailvu calls your callback URL it will post the following parameters</p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="42" bgcolor="#ffffff">
+                <p align="LEFT">
+                request-id</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                UNIQUE
+                ID that represent either a user or a request by the user. This is
+                the same ID that was sent during the recording request</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                playback-url</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                This
+                is the URL you can use to play back the video. This value is URL
+                encoded.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                message-id</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                This
+                is the Message ID that can be later used for other api
+                activities.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                thumbnail-url</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                of the thumbnail image</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                User
+                Name sent in the request</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                width</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Width
+                of the video</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                height</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Height
+                of the video</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="22" bgcolor="#ffffff">
+                <p align="LEFT">
+                duration</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Duration
+                of the video in seconds. e.g. 120 for a 2 min long video</p>
+            </td>
+        </tr>
+</table><h1>4 Video Upload</h1>
+
+<h2>4.1 Video Upload Process</h2>
+
+<p>
+1. Your client (Mobile phone or browser) uploads the video to our server. It
+passes a unique request Id that identifies that upload. This request
+Id could be any string (GUID).<br>
+2. Once the upload is complete the server responds with an OK message to the
+mobile phone client. On a desktop, you can supply a redirect URL in
+the request so we can redirect the user to that URL. This enables
+you to add a custom Thank You page.<br>
+3. mailVU then starts converting the video into other formats and creates a thumbnail image from the video<br>
+4. After processing is complete, mailVU will call your callback server with
+an HTTP post and pass you details about the video. The details
+include a play back URL, URL for thumbnail image, video dimensions
+and length.<br>
+5. You can now store this information in your database and serve it up to
+the user.<br></p>
+
+<p><br><img src="http://mailvu-static.s3.amazonaws.com/api/VideoUploadProcess.png" alt="Video Upload Process"><br></p>
+
+<h2>4.2 Upload URL</h2>
+
+<p>You can upload video using this URL :
+<a href="http://upload.mailvu.com/app/videoUploadApi.do"></a><a href="http://upload.mailvu.com/app/videoUploadApi.do">http://upload.mailvu.com/app/videoUploadApi.do</a></p>
+
+<p>
+<br></p>
+
+<h2>4.3 HTTP Post Parameters</h2>
+
+<p>
+ 
+</p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="90" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                accountId</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p align="LEFT">
+                API-KEY</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="42" bgcolor="#ffffff">
+                <p align="LEFT">
+                userName</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                UserName
+                of the user uploading the video. This username must have been
+                created using the Create user API above. 
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                requestId</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                REQUEST-ID
+                that is unique for each request.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                fileData</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                This
+                is the field in which you will send the video file</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="42" bgcolor="#ffffff">
+                <p align="LEFT">
+                widthConstraint</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                If
+                you want video to be a certain size, you can specify the width
+                constraint. Do not include this field if you want default width</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="42" bgcolor="#ffffff">
+                <p align="LEFT">
+                uploadCompleteUrl</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                If
+                you want to redirect users to a page after the upload is
+                complete, you include this URL and we will redirect to this URL
+                after the upload is complete.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="60" bgcolor="#ffffff">
+                <p align="LEFT">
+                callbackUrl</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Optional</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                By
+                default the callback is sent to the URL configured at the time of
+                setup. You can optionally include a URL during upload so the
+                callback is sent to this URL instead.</p>
+            </td>
+        </tr>
+</table><h2>4.4 Callback</h2>
+
+<p>When mailvu calls your callback URL it will post the following parameters:</p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="42" bgcolor="#ffffff">
+                <p align="LEFT">
+                request-id</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                UNIQUE
+                ID that represent either a user or a request by the user. This is
+                the same ID that was sent during the recording request</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                playback-url</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                This
+                is the URL you can use to play back the video. This value is URL
+                encoded.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                message-id</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                This
+                is the Message ID that can be later used for other api
+                activities.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                thumbnail-url</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                URL
+                of the thumbnail image</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                User
+                Name sent in the request</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                width</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Width
+                of the video</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                height</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Height
+                of the video</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="22" bgcolor="#ffffff">
+                <p align="LEFT">
+                duration</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Duration
+                of the video in seconds. e.g. 120 for a 2 min long video</p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<p>
+<br></p>
+
+<p>
+<br></p>
+
+<p>
+<br></p>
+
+<p>
+<br></p>
+
+<p>
+ 
+</p>
+
+<h1>5 Contact Management</h1>
+
+<h2>5.1 Contact Management API Endpoints</h2>
+
+<p>
+<br></p>
+
+<table width="626" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="138" height="4" bgcolor="#d9eaca">
+                <h2 align="CENTER">Environment</h2>
+            </td>
+            <td width="458" bgcolor="#d9eaca">
+                <h2 align="CENTER">URL</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="138" height="5" bgcolor="#ffffff">
+                <p>
+                Test</p>
+            </td>
+            <td width="458" bgcolor="#ffffff">
+                <p>
+                <a href="http://mailvu.com/api/record.do">http://apitest.mailvu.com/api/v1/manage</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="138" height="4" bgcolor="#ffffff">
+                <p>
+                Production</p>
+            </td>
+            <td width="458" bgcolor="#ffffff">
+                <p>
+                <a href="http://mailvu.com/api/record.do">http://api.mailvu.com/api/v1/manage</a></p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h2>5.2 Add Contact</h2>
+
+<p>To Add/Remove Contacts you should call the above URL using HTTP protocol
+and pass the following parameters as POST or GET variables</p>
+
+<p>
+<br></p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="44" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ADD_CONTACT:
+                to add a contact to the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                A
+                unique ID (Unique for your account) that identifies a user</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="135" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+user-id+timestamp+partner-secret-key))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                contact-id</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Req</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Primary
+                key of contact which is in your system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                email</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Email
+                address of the contact</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                first-name</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                First
+                name of the contact</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                middle-name</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Middle
+                Name of the contact</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                last-name</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Last
+                name of the contact</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                organization</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Organization
+                name</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                business-phone</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Business
+                Phone number</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                group1</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Name
+                of Group #1</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                group2</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Name
+                of Group #2</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="135" height="4" bgcolor="#ffffff">
+                <p align="LEFT">
+                group3</p>
+            </td>
+            <td width="44" bgcolor="#ffffff">
+                <p>
+                Opt</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Name
+                of Group #3</p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<p>
+<br></p>
+
+<h2>Return Values</h2>
+
+<p>
+<br></p>
+
+<table width="626" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ff9966">
+                <h2 align="CENTER">Value</h2>
+            </td>
+            <td width="404" bgcolor="#ff9966">
+                <p align="CENTER">
+                <b>Description</b></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                ok</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Action
+                successful. User was added to the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                Error
+                301</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                certain required parameters are missing</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="23" bgcolor="#ffffff">
+                <p>
+                Error
+                304</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                the hash generated by mailvu does not match the hash passed in
+                the parameter.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ffffff">
+                <p>
+                Error
+                321</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                User
+                ID already exists in the system</p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h2>5.3 Delete Contact</h2>
+
+<p>
+<br></p>
+
+<p>
+<br></p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#cadbfe">
+                <h2 align="CENTER">Parameter name</h2>
+            </td>
+            <td width="90" bgcolor="#cadbfe">
+                <h2 align="CENTER">Type</h2>
+            </td>
+            <td width="404" bgcolor="#cadbfe">
+                <h2 align="CENTER">Description</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="23" bgcolor="#ffffff">
+                <p align="LEFT">
+                api-key</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                ID
+                of the partner. Given during setup by mailVU.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                action</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                DELETE_CONTACT:
+                to delete a user from the system.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="5" bgcolor="#ffffff">
+                <p align="LEFT">
+                user-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                user-id
+                key of the user whose contact is to be deleted</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="57" bgcolor="#ffffff">
+                <p align="LEFT">
+                timestamp</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Unix
+                Timestamp is number of
+                seconds since January 1, 1970, 00:00:00 GMT. See Appendix A on
+                how to generate this timestamp. If the timestamp is more than 30
+                mins old, this message will be rejected.
+                
+                </p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="135" bgcolor="#ffffff">
+                <p align="LEFT">
+                hash</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                hexdigest(MD5(action+api-key+user-id+timestamp+partner-secret-key))</p>
+                <p>
+                This
+                is used to validate that the api request is coming from a valid
+                partner and URL is not being reused/changed.</p>
+                <p>
+                The
+                partner-secret-key is assigned to the partner at the time of
+                setup. It is never sent in plaintext.</p>
+                <p>
+                <br></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="89" height="22" bgcolor="#ffffff">
+                <p align="LEFT">
+                contact-id</p>
+            </td>
+            <td width="90" bgcolor="#ffffff">
+                <p>
+                Required</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                contact-id
+                key in your system</p>
+            </td>
+        </tr>
+</table><p>
+<br></p>
+
+<h2>Return Values</h2>
+
+<p>
+<br></p>
+
+<table width="626" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ff9966">
+                <h2 align="CENTER">Value</h2>
+            </td>
+            <td width="404" bgcolor="#ff9966">
+                <p align="CENTER">
+                <b>Description</b></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                ok</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                Action
+                successful. User was added to the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                Error
+                301</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                certain required parameters are missing</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="23" bgcolor="#ffffff">
+                <p>
+                Error
+                304</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                When
+                the hash generated by mailvu does not match the hash passed in
+                the parameter.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="5" bgcolor="#ffffff">
+                <p>
+                Error
+                322</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                User
+                does not exist in the system</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="193" height="4" bgcolor="#ffffff">
+                <p>
+                Error
+                323</p>
+            </td>
+            <td width="404" bgcolor="#ffffff">
+                <p>
+                User
+                is already deleted</p>
+            </td>
+        </tr>
+</table><h1>6 Presenting videos on web or email</h1>
+
+<h2>6.1 Showing the Video</h2>
+
+<p>
+<br></p>
+
+<p>
+In
+order to show the video passed as a link to you.</p>
+<p>
+playback-url,
+height and width were passed to you as parameters in the callback URL</p>
+<p>
+<br></p>
+
+<p>
+&lt;iframe
+src=”{playback-url}” frameborder=”no”
+height=”{height}” width=”{width}”&gt;
+&lt;/iframe&gt;</p>
+<p>
+<br></p>
+
+<h2>6.2 Sending an Email with the video</h2>
+
+<p>
+<br></p>
+
+<p>
+You
+can send an email to  a user by embedding following HTML code in the
+email</p>
+<p>
+&lt;a
+href=”${playback-url}”&gt;&lt;img src=”${thumbnail-url}”
+border=”0”/&gt;&lt;/a&gt;</p>
+<p>
+<br></p>
+
+<p>
+<br></p>
+
+<p>
+<br></p>
+
+<p>
+<br></p>
+
+<h1>Appendix A: Generating a timestamp</h1>
+
+<p>
+<br></p>
+
+<p>
+Java:</p>
+<p align="LEFT">
+        private
+long getTimeStamp() {</p>
+<p align="LEFT">
+    
+        Date now=new Date();</p>
+<p align="LEFT">
+    
+        return now.getTime()/1000;</p>
+<p align="LEFT">
+    
+    }</p>
+<p align="LEFT">
+<br></p>
+
+<p align="LEFT">
+PHP:
+        time();</p>
+<p align="LEFT">
+<br></p>
+
+<p align="LEFT">
+ASP:</p>
+<p align="LEFT">
+<br></p>
+
+<p align="LEFT">
+    function
+get_unix_timestamp()</p>
+<p align="LEFT">
+    
+    current_date_time = now()</p>
+<p align="LEFT">
+        get_unix_timestamp
+= DateDiff("s", "01/01/1970 00:00:00",
+current_date_time)</p>
+<p align="LEFT">
+    end
+function</p>
+<p align="LEFT">
+<br></p>
+
+<p align="LEFT">
+<br></p>
+
+<h1>Appendix B:Social media icon URLS (or use your own)</h1>
+
+<p align="LEFT">
+<br></p>
+
+<table width="627" border="1" cellpadding="7" cellspacing="0">
+<tr valign="TOP">
+<td width="71" height="5" bgcolor="#cadbfe">
+                <h2 align="CENTER">Icon</h2>
+            </td>
+            <td width="526" bgcolor="#cadbfe">
+                <h2 align="CENTER">URL</h2>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/facebook.png" name="graphics3" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/facebook.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/facebook.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/google-plus.png" name="graphics4" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/google-plus.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/google-plus.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/linkedin.png" name="graphics5" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/linkedin.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/linkedin.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/meetup.png" name="graphics6" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/meetup.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/meetup.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/blogger.png" name="graphics8" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/blogger.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/blogger.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/tumblr.png" name="graphics9" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/tumblr.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/tumblr.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/twitter.png" name="graphics10" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/twitter.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/twitter.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/twitter-2.png" name="graphics11" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/twitter-2.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/twitter-2.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/wikepedia.png" name="graphics12" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/wikepedia.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/wikepedia.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/wordpress.png" name="graphics13" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/wordpress.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/wordpress.png</a></p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="28" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/youtube.png" name="graphics14" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/youtube.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/youtube.png</a></p>
+            </td>
+        </tr>
+</table><p align="LEFT">
+<br></p>
+
+<div type="FOOTER">
+    <p align="LEFT">
+    Private
+    and Confidential - (C) A2Stream Inc.                     Tuesday, November 27, 201212</p>
+</div>
+
+<p></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">mailVU API Documentation maintained by <a href="https://github.com/afitzpatrick1">afitzpatrick1</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
