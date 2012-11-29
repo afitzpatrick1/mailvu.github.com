@@ -31,9 +31,14 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>1.  Introduction</h1>
+        <p></p><h1>mailVU API Documentation</h1>
+Table of Contents
 
-<h2>1.1.  Prerequisites</h2>
+<p><a href="#Introduction">1. Introduction</a><br><a href="#UserManagement">2.  User Management</a><br><a href="#UserManagementEndpoints">   2.1  User Management API Endpoints</a><br><a href="#UserManagementAddUser">   2.2  Add User</a><br><a href="#UserManagementChangeUser">   2.3  Change User</a><br><a href="#UserManagementDeleteUser">   2.4  Delete User</a><br><a href="#Message">3.  Message</a><br><a href="#MessageWorkflow">   3.1  Message Workflow</a><br><a href="#MessageEndpoints">   3.2  Message API Endpoints</a><br><a href="#RecordMessage">   3.3  Record Message</a><br><a href="#RecordAndSend">   3.4  Record and Send Message</a><br><a href="#SendMessage">   3.5  Send Message</a><br><a href="#GetMessageHistory">   3.6  Get Message History</a><br><a href="#Download">   3.7  Download File</a><br><a href="#MessageCallback">   3.8  Message Callback</a><br><a href="#VideoUpload">4. Video Upload</a><br><a href="#UploadProcess">   4.1 Video Upload Process</a><br><a href="#UploadURL">   4.2 Upload URL</a><br><a href="#HTTPPost">   4.3 HTTP Post Parameters</a><br><a href="#VideoCallback">   4.4 Callback</a><br><a href="#Contact">5. Contact Management</a><br><a href="#ContactAPIEndpoints">   5.1 Contact Management API Endpoints</a><br><a href="#AddContact">   5.2 Add Contact</a><br><a href="#DeleteContact">   5.3 Delete Contact</a><br><a href="#PresentVideo">6. Presenting the Video on Web or Email</a><br><a href="#ShowVideo">   6.1 Showing the Video</a><br><a href="#SendVideo">   6.2 Sending an Email with the Video</a><br><a href="#AppendixA">Appendix A - Timestamps</a><br><a href="#AppendixB">Appendix B - Social Media Icons</a><br></p>
+
+<h1><a name="Introduction">1.  Introduction</a></h1>
+
+<h2><a name="Prerequisites">1.1.  Prerequisites</a></h2>
 
 <p>When requesting the API key, please provide us the following</p>
 
@@ -42,9 +47,9 @@
 <li>Text for the title bar and the button of the widget.</li>
 <li>Number of minutes of recording you would like up to 10 minutes.</li>
 <li>Callback URL. If you want to get notification of each recording, you will have to provide us with a callback URL</li>
-</ol><h1>2.  User Management</h1>
+</ol><h1><a name="UserManagement">2.  User Management</a></h1>
 
-<h2>2.1.  User Management API Endpoints</h2>
+<h2><a name="UserManagementEndpoints">2.1.  User Management API Endpoints</a></h2>
 
 <p>
 <br></p>
@@ -78,7 +83,7 @@
                 <a href="http://mailvu.com/api/record.do">http://api.mailvu.com/api/v1/manage</a></p>
             </td>
         </tr>
-</table><h2>2.2.  Add User</h2>
+</table><h2><a name="UserManagementAddUser">2.2.  Add User</a></h2>
 
 <p>To Add/Remove Users you should call the above URL using HTTP protocol and pass the following parameters as POST or GET variables</p>
 
@@ -652,7 +657,7 @@
 </table><p>
 <br></p>
 
-<h2>2.3 Change User</h2>
+<h2><a name="UserManagementChangeUser">2.3 Change User</a></h2>
 
 <p>To change certain parameters of the user (plan/security etc.) you can
 call the endpoints with the following parameters:</p>
@@ -1234,7 +1239,7 @@ call the endpoints with the following parameters:</p>
 </table><p>
 <br></p>
 
-<h2>2.4 Delete User</h2>
+<h2><a name="UserManagementDeleteUser">2.4 Delete User</a></h2>
 
 <p>When a user is deleted, all the videos stored in the system are also
 deleted. Videos recorded earlier for this user will not play anymore</p>
@@ -1426,14 +1431,14 @@ deleted. Videos recorded earlier for this user will not play anymore</p>
 </table><p>
 <br></p>
 
-<h1>3. Message</h1>
+<h1><a name="Message">3. Message</a></h1>
 
 <p></p>
 
 <p>
 <br></p>
 
-<h2>3.1 Workflow</h2>
+<h2><a name="MessageWorkflow">3.1 Workflow</a></h2>
 
 <p><br><img src="http://mailvu-static.s3.amazonaws.com/api/api_workflow.png" alt="API Workflow"><br></p>
 
@@ -1445,7 +1450,7 @@ deleted. Videos recorded earlier for this user will not play anymore</p>
 <p>
 <br></p>
 
-<h2>3.2 Message API Endpoints</h2>
+<h2><a name="MessageEndpoints">3.2 Message API Endpoints</a></h2>
 
 <p>
 <br></p>
@@ -1485,7 +1490,7 @@ deleted. Videos recorded earlier for this user will not play anymore</p>
 <p>
 <br></p>
 
-<h2>3.3 Record Message</h2>
+<h2><a name="RecordMessage">3.3 Record Message</a></h2>
 
 <p>This action will allow users to record a message and when the message is
 done recording, they click on the “Save Video” and they
@@ -1641,7 +1646,7 @@ server with the details of the video.</p>
  
 </p>
 
-<h2>3.4 Record and Send Message</h2>
+<h2><a name="RecordAndSend">3.4 Record and Send Message</a></h2>
 
 <p>This action allows you to record a message and email it out to email
 addresses passed as parameters.</p>
@@ -1887,7 +1892,7 @@ addresses passed as parameters.</p>
  
 </p>
 
-<h2>3.5 Send Message</h2>
+<h2><a name="SendMessage">3.5 Send Message</a></h2>
 
 <p>This action allows you to (re) send an already recorded message to some
 email address passed as parameters</p>
@@ -2149,7 +2154,7 @@ email address passed as parameters</p>
 </table><p>
 <br></p>
 
-<h2>3.6 Get Message History</h2>
+<h2><a name="GetMessageHistory">3.6 Get Message History</a></h2>
 
 <table width="627" border="1" cellpadding="7" cellspacing="0">
 <tr valign="TOP">
@@ -2287,7 +2292,7 @@ email address passed as parameters</p>
 </table><p>
 <br></p>
 
-<h2>3.7 Download File</h2>
+<h2><a name="Download">3.7 Download File</a></h2>
 
 <table width="627" border="1" cellpadding="7" cellspacing="0">
 <tr valign="TOP">
@@ -2432,7 +2437,7 @@ email address passed as parameters</p>
 </table><p>
 <br></p>
 
-<h2>3.8 Callback</h2>
+<h2><a name="MessageCallback">3.8 Callback</a></h2>
 
 <p>When mailvu calls your callback URL it will post the following parameters</p>
 
@@ -2536,9 +2541,9 @@ email address passed as parameters</p>
                 of the video in seconds. e.g. 120 for a 2 min long video</p>
             </td>
         </tr>
-</table><h1>4 Video Upload</h1>
+</table><h1><a name="VideoUpload">4 Video Upload</a></h1>
 
-<h2>4.1 Video Upload Process</h2>
+<h2><a name="UploadProcess">4.1 Video Upload Process</a></h2>
 
 <p>
 1. Your client (Mobile phone or browser) uploads the video to our server. It
@@ -2558,7 +2563,7 @@ the user.<br></p>
 
 <p><br><img src="http://mailvu-static.s3.amazonaws.com/api/VideoUploadProcess.png" alt="Video Upload Process"><br></p>
 
-<h2>4.2 Upload URL</h2>
+<h2><a name="UploadURL">4.2 Upload URL</a></h2>
 
 <p>You can upload video using this URL :
 <a href="http://upload.mailvu.com/app/videoUploadApi.do"></a><a href="http://upload.mailvu.com/app/videoUploadApi.do">http://upload.mailvu.com/app/videoUploadApi.do</a></p>
@@ -2566,7 +2571,7 @@ the user.<br></p>
 <p>
 <br></p>
 
-<h2>4.3 HTTP Post Parameters</h2>
+<h2><a name="HTTPPost">4.3 HTTP Post Parameters</a></h2>
 
 <p>
  
@@ -2695,7 +2700,7 @@ the user.<br></p>
                 callback is sent to this URL instead.</p>
             </td>
         </tr>
-</table><h2>4.4 Callback</h2>
+</table><h2><a name="VideoCallback">4.4 Callback</a></h2>
 
 <p>When mailvu calls your callback URL it will post the following parameters:</p>
 
@@ -2818,9 +2823,9 @@ the user.<br></p>
  
 </p>
 
-<h1>5 Contact Management</h1>
+<h1><a name="Contact">5 Contact Management</a></h1>
 
-<h2>5.1 Contact Management API Endpoints</h2>
+<h2><a name="ContactAPIEndpoints">5.1 Contact Management API Endpoints</a></h2>
 
 <p>
 <br></p>
@@ -2857,7 +2862,7 @@ the user.<br></p>
 </table><p>
 <br></p>
 
-<h2>5.2 Add Contact</h2>
+<h2><a name="AddContact">5.2 Add Contact</a></h2>
 
 <p>To Add/Remove Contacts you should call the above URL using HTTP protocol
 and pass the following parameters as POST or GET variables</p>
@@ -3190,7 +3195,7 @@ and pass the following parameters as POST or GET variables</p>
 </table><p>
 <br></p>
 
-<h2>5.3 Delete Contact</h2>
+<h2><a name="DeleteContact">5.3 Delete Contact</a></h2>
 
 <p>
 <br></p>
@@ -3394,9 +3399,9 @@ and pass the following parameters as POST or GET variables</p>
                 is already deleted</p>
             </td>
         </tr>
-</table><h1>6 Presenting videos on web or email</h1>
+</table><h1><a name="PresentVideo">6 Presenting videos on web or email</a></h1>
 
-<h2>6.1 Showing the Video</h2>
+<h2><a name="ShowVideo">6.1 Showing the Video</a></h2>
 
 <p>
 <br></p>
@@ -3418,7 +3423,7 @@ height=”{height}” width=”{width}”&gt;
 <p>
 <br></p>
 
-<h2>6.2 Sending an Email with the video</h2>
+<h2><a name="SendVideo">6.2 Sending an Email with the video</a></h2>
 
 <p>
 <br></p>
@@ -3443,7 +3448,7 @@ border=”0”/&gt;&lt;/a&gt;</p>
 <p>
 <br></p>
 
-<h1>Appendix A: Generating a timestamp</h1>
+<h1><a name="AppendixA">Appendix A: Generating a timestamp</a></h1>
 
 <p>
 <br></p>
@@ -3495,7 +3500,7 @@ function</p>
 <p align="LEFT">
 <br></p>
 
-<h1>Appendix B:Social media icon URLS (or use your own)</h1>
+<h1><a name="AppendixB">Appendix B:Social media icon URLS (or use your own)</a></h1>
 
 <p align="LEFT">
 <br></p>
@@ -3512,7 +3517,7 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/facebook.png" name="graphics3" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_m34c1f31a.png" name="graphics3" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3522,7 +3527,7 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/google-plus.png" name="graphics4" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_4a0a358d.png" name="graphics4" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3532,7 +3537,7 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/linkedin.png" name="graphics5" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_m355185e4.png" name="graphics5" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3542,7 +3547,7 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/meetup.png" name="graphics6" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_m3a786605.png" name="graphics6" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3552,7 +3557,18 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/blogger.png" name="graphics8" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_m19d0c2e0.png" name="graphics7" align="BOTTOM" width="43" height="43" border="0"></p>
+            </td>
+            <td width="526" bgcolor="#ffffff">
+                <p>
+                Are
+                you kidding me? Who uses myspace anymore.</p>
+            </td>
+        </tr>
+<tr valign="TOP">
+<td width="71" height="29" bgcolor="#ffffff">
+                <p lang="" align="LEFT">
+                <img src="mailvu_api_1_40_word%20no%20rev_html_4bcf8c36.png" name="graphics8" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3562,7 +3578,7 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/tumblr.png" name="graphics9" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_435f948c.png" name="graphics9" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3572,7 +3588,7 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/twitter.png" name="graphics10" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_ff2429c.png" name="graphics10" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3582,7 +3598,7 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/twitter-2.png" name="graphics11" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_790af4ec.png" name="graphics11" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3592,7 +3608,7 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/wikepedia.png" name="graphics12" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_m35378a.png" name="graphics12" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3602,7 +3618,7 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="29" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/wordpress.png" name="graphics13" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_mef698eb.png" name="graphics13" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
@@ -3612,20 +3628,22 @@ function</p>
 <tr valign="TOP">
 <td width="71" height="28" bgcolor="#ffffff">
                 <p lang="" align="LEFT">
-                <img src="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/youtube.png" name="graphics14" align="BOTTOM" width="43" height="43" border="0"></p>
+                <img src="mailvu_api_1_40_word%20no%20rev_html_m6db44743.png" name="graphics14" align="BOTTOM" width="43" height="43" border="0"></p>
             </td>
             <td width="526" bgcolor="#ffffff">
                 <p>
                 <a href="http://d2btk5j6rdz454.cloudfront.net/images/social/vector/youtube.png">http://d2btk5j6rdz454.cloudfront.net/images/social/vector/youtube.png</a></p>
             </td>
         </tr>
-</table><p align="LEFT">
+</table><p></p>
+
+<p align="LEFT">
 <br></p>
 
 <div type="FOOTER">
     <p align="LEFT">
     Private
-    and Confidential - (C) A2Stream Inc.                     Tuesday, November 27, 201212</p>
+    and Confidential - (C) A2Stream Inc.                     November 2012</p>
 </div>
 
 <p></p>
